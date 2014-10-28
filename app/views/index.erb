@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Welcome to Sinatra Blog!</h1>
+    <div class= "content">
+    <% @post.each do |epost| %>
+      <div class="single_post">
+        <div class = "post_title"> <p><a href= '<%= "/posts/#{epost.id}" %>'> <%= epost.title %> </a> </p> </div>
+        <div class = "post_content"> <p><%= epost.content %> </p> </div>
+        <div class = "post_author"> <p> Author: <%= epost.author %> </p> </div>
+        <div class ="post_tag"> <p>Tag:</p></div>
+      </div>
+
+      <% end %>
+    </div>
+
+    <div class="right-content">
+       <h3>Latest Blog Post:</h3>
+        <ul>
+          <% @right_content_post.each do |epost| %>
+          <li> <a href= '<%= "/posts/#{epost.id}"%>' > <%= "#{epost.title}"%>  </a> </li>
+          <% end %>
+        </ul>
+    </div>
+
+</div>
