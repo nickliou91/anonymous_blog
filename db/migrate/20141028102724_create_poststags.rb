@@ -7,3 +7,4 @@ class CreatePoststags < ActiveRecord::Migration
     end
   end
 end
+

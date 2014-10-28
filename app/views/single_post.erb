@@ -5,8 +5,21 @@
         <div class = "post_title"> <p> <%= @single_post.title %> </p> </div>
         <div class = "post_content"> <p><%= @single_post.content %> </p> </div>
         <div class = "post_author"> <p> Author: <%= @single_post.author %> </p> </div>
-        <div class ="post_tag"> <p>Tag:</p></div>
+        <div class ="post_tag"> <p>Tags:
+            <% @single_post.tags.each do |tag| %>
+                           <%= tag.tag_name %> ,
+                          <% end %>
+        </p></div>
+
       </div>
+      <div style= "margin:30px; float:left">
+      <form method="post" action="/posts/<%= @single_post.id %>/edit">
+          <button style="width:110px; " type="submit">Edit</button>
+      </form> </div>
+        <div style= "margin:30px; float:left">
+      <form method="post" action="/posts/<%= @single_post.id %>/delete">
+          <button style="width:110px;" type="submit">Delete</button>
+      </form> </div>
     </div>
 
 </div>

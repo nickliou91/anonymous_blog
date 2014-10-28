@@ -6,7 +6,11 @@
         <div class = "post_title"> <p><a href= '<%= "/posts/#{epost.id}" %>'> <%= epost.title %> </a> </p> </div>
         <div class = "post_content"> <p><%= epost.content %> </p> </div>
         <div class = "post_author"> <p> Author: <%= epost.author %> </p> </div>
-        <div class ="post_tag"> <p>Tag:</p></div>
+        <div class ="post_tag"> <p>Tags:
+                          <% epost.tags.each do |tag| %>
+                           <%= tag.tag_name %> ,
+                          <% end %>
+               </p></div>
       </div>
 
       <% end %>

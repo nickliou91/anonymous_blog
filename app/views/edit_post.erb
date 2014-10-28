@@ -1,12 +1,12 @@
 <div class="container">
 
- <form action= "/posts/new_post" method="POST" class="basic-grey">
+ <form action= "/posts/<%= @post.id %>" method="POST" class="basic-grey">
     <h1>Post something
         <!-- <span>Please fill all the texts in the fields.</span>-->
     </h1>
     <label>
         <span>Your Name:</span>
-        <input id="author" type="text" name="author" placeholder="Author" />
+        <input id="author" type="text" name="author" value= "<%= @post.author %>"/>
     </label>
 
    <!--  <label>
@@ -15,17 +15,22 @@
     </label> -->
      <label>
         <span>Title:</span>
-        <input id="title" type="text" name="title" placeholder="Your blog title" />
+        <input id="title" type="text" name="title" value= "<%= @post.title %>" />
     </label>
     <label>
         <span>Content :</span>
-        <textarea id="message" name="content" placeholder="Your blog post content"></textarea>
+        <textarea id="message" name="content"> <%= @post.content %> </textarea>
     </label>
     <label>
         <span>Tags:</span>
         <% @tag.each do |t| %>
-        <input type = "checkbox" name = "key[<%= t.tag_name %>]" value = "<%= t.id %>" /> <%= t.tag_name %>
-
+          <% @post.tags.each do |tag| %>
+            <% if t.id ==  tag.tag_id %>
+            <input type = "checkbox" name = "key[<%= t.tag_name %>]" value = "<%= t.id %>" checked/> < %= t.tag_name %>
+            <% else %>
+              <input type = "checkbox" name = "key[<%= t.tag_name %>]" value = "<%= t.id %>" /> < %= t.tag_name %>
+              <% end %>
+         <% end %>
         <% end %>
     </label>
 
@@ -42,5 +47,3 @@
   <%=  v %> <br>
   <% end %>
 <% end %>
-
-

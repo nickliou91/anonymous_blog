@@ -1,0 +1,31 @@
+<div class="container">
+
+  <table style="margin-bottom:30px;" border="1">
+    <tr> <td width="50px"> ID</td>
+        <td width ="250px"> Tags</td>
+    </tr>
+    <% @tag.each do |t| %>
+    <tr>     <td> <%= t.id %> </td>
+            <td> <%= t.tag_name %> </td>
+    </tr>
+    <% end %>
+  </table>
+ <form action= "/tags/new_tags" method="POST" class="basic-grey">
+    <h1>Add Tags
+        <!-- <span>Please fill all the texts in the fields.</span>-->
+    </h1>
+    <label>
+        <span>Tags You want to add:</span>
+        <input id="author" type="text" name="tag_name" placeholder="Your Full Name" />
+    </label>
+
+        <input type="Submit" class="button" value="Add Tag" />
+    </label>
+</form>
+</div>
+
+<% if !@error_msg.nil? %>
+<% @error_msg.each do |v| %>
+  <%=  v %> <br>
+  <% end %>
+<% end %>
