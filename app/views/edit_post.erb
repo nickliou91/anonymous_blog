@@ -1,6 +1,6 @@
 <div class="container">
 
- <form action= "/posts/<%= @post.id %>" method="POST" class="basic-grey">
+ <form action= "/posts/<%= @post.id %>/edit" method="POST" class="basic-grey">
     <h1>Post something
         <!-- <span>Please fill all the texts in the fields.</span>-->
     </h1>
@@ -24,13 +24,18 @@
     <label>
         <span>Tags:</span>
         <% @tag.each do |t| %>
+            <% checked = false %>
           <% @post.tags.each do |tag| %>
-            <% if t.id ==  tag.tag_id %>
-            <input type = "checkbox" name = "key[<%= t.tag_name %>]" value = "<%= t.id %>" checked/> < %= t.tag_name %>
-            <% else %>
-              <input type = "checkbox" name = "key[<%= t.tag_name %>]" value = "<%= t.id %>" /> < %= t.tag_name %>
-              <% end %>
+            <% if t.id == tag.id  %>
+               <% checked = true %> 
+               <% end %>
+
          <% end %>
+            <% if checked  %>
+              <input type = "checkbox" name = "key[<%= t.tag_name %>]" value = "<%= t.id %>" checked/> <%= "#{t.tag_name}" %>
+            <% else %>
+              <input type = "checkbox" name = "key[<%= t.tag_name %>]" value = "<%= t.id %>" /> <%= "#{t.tag_name}" %>
+              <% end %>
         <% end %>
     </label>
 

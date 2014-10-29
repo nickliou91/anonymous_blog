@@ -47,16 +47,34 @@ post 'posts/:id' do
   redirect "/"
 end
 
+get '/posts/:id/edit' do 
+   @post = Post.find(params[:id])
+   @tag = Tag.all
+   erb :edit_post
+end 
+
 
 post '/posts/:id/edit' do
    @post = Post.find(params[:id])
    @tag = Tag.all
+   PostsTag.where("post_id = #{params[:id]}").delete_all
+   
+   if @post.update(author: params[:author], title: params[:title], content: params[:content])
+    
+      params[:key].each do |key, value|
+       PostsTag.create(post_id: @post.id, tag_id: value)
+      end
 
-  erb :edit_post
+      redirect "/posts/#{@post.id}"
+
+  else 
+    erb :edit_post  
+  end
 end
 
 post '/posts/:id/delete' do
 
+  Post.destroy(params[:id])
   redirect "/"
 end
 
